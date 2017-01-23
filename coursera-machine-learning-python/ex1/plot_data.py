@@ -9,7 +9,7 @@ def plot_data(x, y, show=False):
     :param show: whether to show the plot
     """
     plt.figure()
-    plt.plot(x, y, linestyle='', marker='x', color='r')
+    plt.plot(x, y, linestyle='', marker='x', color='r', label='Data Points')
     plt.xlabel('Population of City in 10,000s')
     plt.ylabel('Profit in $10,000s')
     if show:
