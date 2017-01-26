@@ -8,9 +8,9 @@ def compute_cost(x, y, theta):
     Parameters
     ----------
     x : ndarray
-        Training data. It's a n by m matrix, where n is the number of data samples and m is the number of features.
+        Training data. It's a m by n matrix, where m is the number of data samples and n is the number of features.
     y : ndarray
-        Labels, n by 1 matrix.
+        Labels, m by 1 matrix.
     theta : ndarray
         Linear regression parameter, n by 1 matrix.
 

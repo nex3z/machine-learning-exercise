@@ -48,7 +48,7 @@ cost = compute_cost(x, y, theta)
 print cost
 
 # Run gradient descent
-[theta, j_history] = gradient_descent(x, y, theta, alpha, iterations)
+theta, j_history = gradient_descent(x, y, theta, alpha, iterations)
 
 # Print theta to screen
 print "Theta found by gradient descent:", theta

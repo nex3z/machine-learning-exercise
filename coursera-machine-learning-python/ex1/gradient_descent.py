@@ -10,22 +10,22 @@ def gradient_descent(x, y, theta, alpha, num_iters):
     Parameters
     ----------
     x : ndarray
-        Training data. It's a n by m matrix, where n is the number of data samples and m is the number of features.
+        Training data. It's a m by n matrix, where m is the number of data samples and n is the number of features.
     y : ndarray
-        Labels, n by 1 matrix.
+        Labels, m by 1 matrix.
     theta : ndarray
-        Linear regression parameter, n by 1 matrix.
+        Initial linear regression parameter, n by 1 matrix.
     alpha : float
         Learning rate.
     num_iters: int
-        Number of iteration. num_iters by 1 matrix.
+        Number of iteration.
 
     Returns
     -------
     theta : ndarray
         Linear regression parameter, n by 1 matrix.
     j_history: ndarray
-        Cost history.
+        Cost history, num_iters by 1 matrix.
     """
     m = len(y)
     j_history = np.zeros((num_iters, 1))
@@ -34,4 +34,4 @@ def gradient_descent(x, y, theta, alpha, num_iters):
         theta -= alpha / m * (np.dot((np.dot(x, theta) - y).T, x)).T
         j_history[i] = compute_cost(x, y, theta)
 
-    return [theta, j_history]
+    return theta, j_history
