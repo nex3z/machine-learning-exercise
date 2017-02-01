@@ -50,8 +50,8 @@ all_theta = one_vs_all(x, y, num_labels, l)
 
 
 # ================ Part 3: Predict for One-Vs-All ================
-p = predict_one_vs_all(all_theta, x)
-print 'Train Accuracy:', np.mean(p == y) * 100
+pred = predict_one_vs_all(all_theta, x)
+print 'Training Set Accuracy:', np.mean(pred == y) * 100
 
 
 plt.show()

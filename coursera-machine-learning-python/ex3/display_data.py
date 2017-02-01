@@ -36,7 +36,8 @@ def display_data(x, tile_width=-1, padding=0, show=False):
         for j in range(display_columns):
             tile = format_tile(x[i * display_rows + j, ], tile_width, padding)
             tile = tile.T
-            data[(i * tile_height_padded):(i+1) * tile_height_padded, j * tile_width_padded : (j + 1) * tile_width_padded] = tile
+            data[i * tile_height_padded:(i + 1) * tile_height_padded,
+                 j * tile_width_padded:(j + 1) * tile_width_padded] = tile
 
     plt.imshow(data, cmap='gray', extent=[0, 1, 0, 1])
 
