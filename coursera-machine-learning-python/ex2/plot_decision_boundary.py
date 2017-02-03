@@ -30,7 +30,7 @@ def plot_decision_boundary(theta, x, y):
         z = np.zeros((len(u), len(v)))
         for i in range(len(u)):
             for j in range(len(v)):
-                z[i, j] = map_feature(u[i, 0:1].reshape((1,1)), v[j, 0:1].reshape((1,1))).dot(theta);
+                z[i, j] = map_feature(u[i, 0:1].reshape((1, 1)), v[j, 0:1].reshape((1, 1))).dot(theta)
         z = z.T
         u, v = np.meshgrid(u, v)
         cs = plt.contour(u, v, z, levels=[0])

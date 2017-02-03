@@ -27,7 +27,7 @@ plt.legend(['y = 1', 'y = 0'], loc='upper right', numpoints=1)
 
 # =========== Part 1: Regularized Logistic Regression ============
 # Add Polynomial Features
-# Note that mapFeature also adds a column of ones for us, so the intercept term is handled
+# Note that map_feature also adds a column of ones for us, so the intercept term is handled
 x = map_feature(x[:, 0:1], x[:, 1:2])
 
 m, n = x.shape
@@ -35,7 +35,7 @@ m, n = x.shape
 initial_theta = np.zeros((n, 1))
 
 # Set regularization parameter lambda to 1
-l = 1
+l = 1.0
 
 j, g = cost_function_reg(initial_theta, x, y, l)
 
