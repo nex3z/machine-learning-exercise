@@ -1,0 +1,114 @@
+# Machine Learning Online Class - Exercise 4 Neural Network Learning
+import numpy as np
+import scipy.io as sio
+import matplotlib.pyplot as plt
+import scipy.optimize as opt
+
+from display_data import display_data
+from nn_cost_function import nn_cost_function
+from sigmoid_gradient import sigmoid_gradient
+from rand_initialize_weights import rand_initialize_weights
+from predict import predict
+
+
+# Setup the parameters you will use for this exercise
+input_layer_size = 400   # 20x20 Input Images of Digits
+hidden_layer_size = 25   # 25 hidden units
+num_labels = 10          # 10 labels, from 1 to 10 (note that we have mapped "0" to label 10)
+
+
+# =========== Part 1: Loading and Visualizing Data =============
+print 'Loading and Visualizing Data...'
+
+# Load Training Data
+mat_data = sio.loadmat('ex4data1.mat')
+x = mat_data['X']
+y = mat_data['y']
+m, n = x.shape
+
+# Randomly select 100 data points to display
+rand_indices = np.random.permutation(m)
+sel = x[rand_indices[0:100], :]
+display_data(sel, padding=1)
+
+
+# ================ Part 2: Loading Parameters ================
+# In this part of the exercise, we load some pre-initialized neural network parameters.
+print 'Loading Saved Neural Network Parameters...'
+
+# Load the weights into variables theta_1 and theta_2
+mat_param = sio.loadmat('ex4weights.mat')
+theta_1 = mat_param['Theta1']
+theta_2 = mat_param['Theta2']
+
+# Unroll parameters
+params_trained = np.hstack((theta_1.flatten('F'), theta_2.flatten('F')))
+params_trained = params_trained.reshape(len(params_trained), 1)
+print 'nn_params', params_trained
+
+# ================ Part 3: Compute Cost (Feedforward) ================
+print 'Feedforward Using Neural Network...'
+l = 0
+J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, x, y, l)
+print 'Cost at parameters (loaded from ex4weights):', J, '(this value should be about 0.287629)'
+
+
+# =============== Part 4: Implement Regularization ===============
+print 'Checking Cost Function (w/ Regularization)...'
+l = 1
+J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, x, y, l)
+print 'Cost at parameters (loaded from ex4weights):', J, '(this value should be about 0.383770)'
+
+
+# ================ Part 5: Sigmoid Gradient  ================
+print 'Evaluating sigmoid gradient...'
+g = sigmoid_gradient(np.array([-1, -0.5, 0, 0.5, 1]))
+print 'Sigmoid gradient evaluated at [-1 -0.5 0 0.5 1]:'
+print g
+
+
+# ================ Part 6: Initializing Parameters ================
+print 'Initializing Neural Network Parameters...'
+initial_theta_1 = rand_initialize_weights(input_layer_size, hidden_layer_size)
+initial_theta_2 = rand_initialize_weights(hidden_layer_size, num_labels)
+initial_nn_params = np.hstack((initial_theta_1.flatten('F'), initial_theta_2.flatten('F')))
+initial_nn_params = initial_nn_params.reshape(len(params_trained), 1)
+print initial_nn_params.shape
+
+
+# =============== Part 7: Implement Backpropagation ===============
+print 'Checking Backpropagation...'
+
+
+# =============== Part 8: Implement Regularization ===============
+print 'Checking Backpropagation (w/ Regularization)...'
+l = 3
+debug_j, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, x, y, l)
+print 'Cost at (fixed) debugging parameters (w/ lambda = {}): {}'.format(l, debug_j)
+print '(for lambda = 3, this value should be about 0.576051)'
+
+
+# =================== Part 8: Training NN ===================
+print 'Training Neural Network...'
+l = 1
+result = opt.minimize(fun=nn_cost_function, x0=initial_nn_params.flatten(),
+                      args=(input_layer_size, hidden_layer_size, num_labels, x, y, l),
+                      method='TNC', jac=True, options={'maxiter': 150})
+params_trained = result.x
+theta_1_trained = np.reshape(params_trained[0:(hidden_layer_size * (input_layer_size + 1)), ],
+                             (hidden_layer_size, input_layer_size + 1), order='F')
+theta_2_trained = np.reshape(params_trained[(hidden_layer_size * (input_layer_size + 1)):, ],
+                             (num_labels, hidden_layer_size + 1), order='F')
+
+
+# ================= Part 9: Visualize Weights =================
+print 'Visualizing Neural Network...'
+display_data(theta_1_trained[:, 1:], padding=1)
+
+
+# ================= Part 10: Implement Predict =================
+pred = predict(theta_1_trained, theta_2_trained, x)
+print 'Training Set Accuracy:', np.mean(pred == y) * 100
+
+
+plt.show()
