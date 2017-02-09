@@ -1,8 +1,7 @@
 import numpy as np
 import scipy.optimize as opt
 
-from lr_cost_function_for_opt import lr_cost_opt
-from lr_cost_function_for_opt import lr_gradient_opt
+from lr_cost_function import lr_cost_function
 
 
 def one_vs_all(x, y, num_labels, l):
@@ -34,8 +33,8 @@ def one_vs_all(x, y, num_labels, l):
 
     for i in range(0, 10):
         label = 10 if i == 0 else i
-        result = opt.minimize(fun=lr_cost_opt, x0=initial_theta, args=(x, (y == label).astype(int), l), method='TNC',
-                              jac=lr_gradient_opt)
+        result = opt.minimize(fun=lr_cost_function, x0=initial_theta, args=(x, (y == label).astype(int), l),
+                              method='TNC', jac=True)
         print 'one_vs_all(): label =', label, ', success =', result.success
         all_theta[i, :] = result.x
 

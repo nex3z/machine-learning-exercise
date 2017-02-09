@@ -1,5 +1,4 @@
-# Machine Learning Online Class - Exercise 3 | Part 1: One-vs-all
-
+# Exercise 3 | Part 1: One-vs-all
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt
@@ -41,7 +40,7 @@ j, grad = lr_cost_function(theta_t, x_t, y_t, lambda_t)
 print 'Cost:', j
 print 'Expected cost: 2.534819'
 print 'Gradients: \n', grad
-print 'Expected gradients: \n', '0.146561\n-0.548558\n0.724722\n1.398003\n'
+print 'Expected gradients: \n', '0.146561\n-0.548558\n0.724722\n1.398003'
 
 #  ============ Part 2b: One-vs-All Training ============
 print 'Training One-vs-All Logistic Regression...'
