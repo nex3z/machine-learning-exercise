@@ -1,13 +1,10 @@
-# Machine Learning Online Class - Exercise 2: Logistic Regression
-
+# Exercise 2: Logistic Regression
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as opt
 
 from plot_data import plot_data
 from cost_function import cost_function
-from cost_function_for_opt import cost_opt
-from cost_function_for_opt import gradient_opt
 from plot_decision_boundary import plot_decision_boundary
 from sigmoid import sigmoid
 from predict import predict
@@ -47,12 +44,21 @@ print 'Gradient at initial theta (zeros):', grad
 
 
 # ============= Part 3: Optimizing using fmin_tnc  =============
-result = opt.fmin_tnc(func=cost_opt, x0=theta, fprime=gradient_opt, args=(x, y), messages=0)
-theta = result[0].T
-print 'Cost at theta found by fminunc:',  cost_opt(theta, x, y)
+theta, nfeval, rc = opt.fmin_tnc(func=cost_function, x0=theta, args=(x, y), messages=0)
+if rc == 0:
+    print 'Local minimum reached after', nfeval, 'function evaluations.'
+
+# Resize theta to an (n + 1) by 1 vector. It's not required nor necessary here but I'll just keep theta the same format
+# as in the original Matlab code.
+theta.resize(n + 1, 1)
+
+# Print theta to screen
+cost, _ = cost_function(theta, x, y)
+print 'Cost at theta found by fminunc:', cost
 print 'theta:', theta
 
-plot_decision_boundary(result[0], x, y)
+# Plot Boundary
+plot_decision_boundary(theta, x, y)
 
 
 # ============== Part 4: Predict and Accuracies ==============
