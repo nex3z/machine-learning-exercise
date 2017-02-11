@@ -1,5 +1,4 @@
 # Machine Learning Online Class - Exercise 2: Logistic Regression
-
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as opt
@@ -7,10 +6,9 @@ import scipy.optimize as opt
 from plot_data import plot_data
 from map_feature import map_feature
 from cost_function_reg import cost_function_reg
-from cost_function_reg_for_opt import cost_reg_opt
-from cost_function_reg_for_opt import gradient_reg_opt
 from plot_decision_boundary import plot_decision_boundary
 from predict import predict
+
 
 # Load Data
 # The first two columns contains the X values and the third column contains the label (y).
@@ -50,10 +48,10 @@ initial_theta = np.zeros((n, 1))
 l = 1.0
 
 # Optimize
-result = opt.fmin_tnc(func=cost_reg_opt, x0=initial_theta, fprime=gradient_reg_opt, args=(x, y, l), messages=0)
-theta = result[0].T
+theta, nfeval, rc = opt.fmin_tnc(func=cost_function_reg, x0=initial_theta, args=(x, y, l), messages=0)
 
 # Plot Boundary
+theta.resize(len(theta), 1)
 plot_decision_boundary(theta, x, y)
 plt.xlabel('Microchip Test 1')
 plt.ylabel('Microchip Test 2')
@@ -62,5 +60,6 @@ plt.ylabel('Microchip Test 2')
 p = predict(theta, x)
 
 print 'Train Accuracy:', np.mean(p == y) * 100
+
 
 plt.show()

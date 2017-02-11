@@ -37,4 +37,4 @@ def cost_function_reg(theta, x, y, l):
         + 1.0 * l / (2 * m) * np.sum(np.power((mask.dot(theta)), 2))
     grad = 1.0 / m * np.dot((sigmoid(x_dot_theta) - y).T, x).T + 1.0 * l / m * (mask.dot(theta))
 
-    return j, grad
+    return j.ravel()[0], grad
