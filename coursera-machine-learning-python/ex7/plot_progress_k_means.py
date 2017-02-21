@@ -1,7 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 from plot_data_points import plot_data_points
+from draw_line import draw_line
 
 
 def plot_progress_k_means(X, history_centroids, idx, K, i):
@@ -29,17 +29,3 @@ def plot_progress_k_means(X, history_centroids, idx, K, i):
     for centroid_idx in range(history_centroids.shape[1]):
         for iter_idx in range(i):
             draw_line(history_centroids[iter_idx, centroid_idx, :], history_centroids[iter_idx + 1, centroid_idx, :])
-
-
-def draw_line(p1, p2):
-    """
-    Draws a line from point p1 to point p2.
-
-    Parameters
-    ----------
-    p1 : ndarray
-        Point 1.
-    p2 : ndarray
-        Point 2.
-    """
-    plt.plot([p1[0], p2[0]], [p1[1], p2[1]], color='k')

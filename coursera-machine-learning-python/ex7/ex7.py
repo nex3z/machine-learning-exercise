@@ -57,7 +57,7 @@ max_iters = 10
 initial_centroids = np.array([[3, 3], [6, 2], [8, 5]])
 
 # Run K-Means algorithm
-centroids, idx = run_k_means(X, initial_centroids, max_iters, False)
+centroids, idx = run_k_means(X, initial_centroids, max_iters, True)
 print 'K-Means Done.'
 
 
