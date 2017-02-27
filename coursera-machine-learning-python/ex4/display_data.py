@@ -32,13 +32,13 @@ def format_tile(x, width=-1, padding=0):
     return tile
 
 
-def display_data(x, tile_width=-1, padding=0, show=False):
+def display_data(X, tile_width=-1, padding=0, show=False):
     """
     Display data in a nice grid
 
     Parameters
     ----------
-    x : ndarray
+    X : ndarray
         Raw data.
     tile_width : int
         Width of each image.
@@ -47,7 +47,7 @@ def display_data(x, tile_width=-1, padding=0, show=False):
     show : bool
         True to show the plot immediately.
     """
-    m, n = x.shape
+    m, n = X.shape
 
     if tile_width < 0:
         tile_width = int(np.round(np.sqrt(n)))
@@ -62,7 +62,7 @@ def display_data(x, tile_width=-1, padding=0, show=False):
 
     for i in range(display_rows):
         for j in range(display_columns):
-            tile = format_tile(x[i * display_rows + j, ], tile_width, padding)
+            tile = format_tile(X[i * display_rows + j,], tile_width, padding)
             tile = tile.T
             data[i * tile_height_padded:(i + 1) * tile_height_padded,
                  j * tile_width_padded:(j + 1) * tile_width_padded] = tile

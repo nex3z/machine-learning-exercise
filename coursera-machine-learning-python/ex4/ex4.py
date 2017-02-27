@@ -1,4 +1,4 @@
-# Machine Learning Online Class - Exercise 4 Neural Network Learning
+# Exercise 4 Neural Network Learning
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt
@@ -28,8 +28,7 @@ m, n = x.shape
 
 # Randomly select 100 data points to display
 rand_indices = np.random.permutation(m)
-sel = x[rand_indices[0:100], :]
-display_data(sel, padding=1)
+display_data(x[rand_indices[0:100], :], padding=1)
 
 
 # ================ Part 2: Loading Parameters ================
@@ -42,9 +41,7 @@ theta_1 = mat_param['Theta1']
 theta_2 = mat_param['Theta2']
 
 # Unroll parameters
-params_trained = np.hstack((theta_1.flatten('F'), theta_2.flatten('F')))
-params_trained = params_trained.reshape(len(params_trained), 1)
-print 'nn_params', params_trained
+params_trained = np.hstack((theta_1.flatten(), theta_2.flatten()))
 
 # ================ Part 3: Compute Cost (Feedforward) ================
 print 'Feedforward Using Neural Network...'
@@ -71,9 +68,7 @@ print g
 print 'Initializing Neural Network Parameters...'
 initial_theta_1 = rand_initialize_weights(input_layer_size, hidden_layer_size)
 initial_theta_2 = rand_initialize_weights(hidden_layer_size, num_labels)
-initial_nn_params = np.hstack((initial_theta_1.flatten('F'), initial_theta_2.flatten('F')))
-initial_nn_params = initial_nn_params.reshape(len(params_trained), 1)
-print initial_nn_params.shape
+initial_nn_params = np.hstack((initial_theta_1.flatten(), initial_theta_2.flatten()))
 
 
 # =============== Part 7: Implement Backpropagation ===============
@@ -96,9 +91,9 @@ result = opt.minimize(fun=nn_cost_function, x0=initial_nn_params.flatten(),
                       method='TNC', jac=True, options={'maxiter': 150})
 params_trained = result.x
 theta_1_trained = np.reshape(params_trained[0:(hidden_layer_size * (input_layer_size + 1)), ],
-                             (hidden_layer_size, input_layer_size + 1), order='F')
+                             (hidden_layer_size, input_layer_size + 1))
 theta_2_trained = np.reshape(params_trained[(hidden_layer_size * (input_layer_size + 1)):, ],
-                             (num_labels, hidden_layer_size + 1), order='F')
+                             (num_labels, hidden_layer_size + 1))
 
 
 # ================= Part 9: Visualize Weights =================
