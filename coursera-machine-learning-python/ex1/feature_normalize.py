@@ -1,27 +1,25 @@
 import numpy as np
 
 
-def feature_normalize(x):
+def feature_normalize(X):
     """
     Normalizes the features in x.
 
     Parameters
     ----------
-    x : ndarray
+    X : ndarray, shape (n_samples, n_features)
         Features to be normalized.
 
     Returns
     -------
-    x_norm : ndarray
+    X_norm : ndarray, shape (n_samples, n_features)
         A normalized version of X where the mean value of each feature is 0 and the standard deviation is 1.
-    mu : ndarray
+    mu : ndarray, shape (n_features,)
         The mean value.
-    sigma : ndarray
+    sigma : ndarray, shape (n_features,)
         The standard deviation.
     """
-    m = x.shape[0]
-    mu = np.mean(x, axis=0)
-    sigma = np.std(x, axis=0, ddof=1)
-    x_norm = (x - np.ones((m, 1)) * mu) / (np.ones((m, 1)) * sigma)
-
-    return x_norm, mu, sigma
+    mu = np.mean(X, axis=0)
+    sigma = np.std(X, axis=0, ddof=1)
+    X_norm = (X - mu) / sigma
+    return X_norm, mu, sigma

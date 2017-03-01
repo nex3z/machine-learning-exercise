@@ -3,18 +3,18 @@ import numpy as np
 from compute_cost_multi import compute_cost_multi
 
 
-def gradient_descent_multi(x, y, theta, alpha, num_iters):
+def gradient_descent_multi(X, y, theta, alpha, num_iters):
     """
     Performs gradient descent to learn theta.
 
     Parameters
     ----------
-    x : ndarray
-        Training data. It's a m by n matrix, where m is the number of data samples and n is the number of features.
-    y : ndarray
-        Labels, m by 1 matrix.
-    theta : ndarray
-        Initial linear regression parameter, n by 1 matrix.
+    X : ndarray, shape (n_samples, n_features)
+        Training data, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels.
+    theta : ndarray, shape (n_features,)
+        Initial linear regression parameter.
     alpha : float
         Learning rate.
     num_iters: int
@@ -22,14 +22,16 @@ def gradient_descent_multi(x, y, theta, alpha, num_iters):
 
     Returns
     -------
-    theta : ndarray
-        Linear regression parameter, n by 1 matrix.
-    j_history: ndarray
-        Cost history, num_iters by 1 matrix.
+    theta : ndarray, shape (n_features,)
+        Linear regression parameter.
+    j_history: ndarray, shape (num_iters,)
+        Cost history.
     """
     m = len(y)
-    j_history = np.zeros((num_iters, 1))
+    j_history = np.zeros(num_iters)
+
     for i in range(num_iters):
-        theta -= alpha / m * (np.dot((np.dot(x, theta) - y).T, x)).T
-        j_history[i] = compute_cost_multi(x, y, theta)
+        theta -= alpha / m * ((X.dot(theta) - y).T.dot(X))
+        j_history[i] = compute_cost_multi(X, y, theta)
+
     return theta, j_history

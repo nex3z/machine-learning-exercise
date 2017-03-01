@@ -7,8 +7,8 @@ def warm_up_exercise():
 
     Returns
     -------
-    I : ndarray
-        of 5x5 identity matrix.
+    A : ndarray, shape (5, 5)
+        A 5x5 identity matrix.
     """
-    a = np.eye(5, dtype=int)
-    return a
+    A = np.eye(5, dtype=int)
+    return A

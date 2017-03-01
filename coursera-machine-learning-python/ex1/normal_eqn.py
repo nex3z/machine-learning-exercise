@@ -1,21 +1,21 @@
 import numpy as np
 
 
-def normal_eqn(x, y):
+def normal_eqn(X, y):
     """
     Computes the closed-form solution to linear regression.
 
     Parameters
     ----------
-    x : ndarray
-        Training data. It's a m by n matrix, where m is the number of data samples and n is the number of features.
-    y : ndarray
-        Labels, m by 1 matrix.
+    X : ndarray, shape (n_samples, n_features)
+        Training data, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels.
 
     Returns
     -------
-    theta : ndarray
-        The closed-form solution to linear regression using the normal equations, which is an n by 1 matrix.
+    theta : ndarray, shape (n_features,)
+        The closed-form solution to linear regression using the normal equations.
     """
-    theta = np.linalg.pinv(x.T.dot(x)).dot(x.T).dot(y)
+    theta = np.linalg.pinv(X.T.dot(X)).dot(X.T).dot(y)
     return theta
