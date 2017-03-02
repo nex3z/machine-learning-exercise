@@ -7,7 +7,7 @@ def sigmoid(z):
 
     Parameters
     ----------
-    z : array_like
+    z : array-like
         Variable for sigmoid function.
 
     Returns

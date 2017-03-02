@@ -3,33 +3,31 @@ import numpy as np
 from sigmoid import sigmoid
 
 
-def cost_function(theta, x, y):
+def cost_function(theta, X, y):
     """
     Compute cost and gradient for logistic regression.
 
     Parameters
     ----------
-    theta : ndarray
-        Linear regression parameter, n by 1 matrix where n is the number of features.
-    x : ndarray
-        Training data, m by n matrix where m is the number of data samples.
-    y : ndarray
-        Labels, m by 1 matrix.
+    theta : ndarray, shape (n_features,)
+        Linear regression parameter.
+    X : ndarray, shape (n_samples, n_features)
+        Training data, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels.
 
     Returns
     -------
-    J : numpy.float64
+    j : numpy.float64
         The cost of using theta as the parameter for linear regression to fit the data points in x and y.
-    grad: ndarray
-        The gradient of the cost w.r.t. the parameters, n by 1 matrix.
+    grad: ndarray, shape (n_features,)
+        The gradient of the cost w.r.t. the parameters.
     """
-    m, n = x.shape
-    theta = theta.reshape(n, 1)
-    x_dot_theta = x.dot(theta)
+    m, n = X.shape
+    x_dot_theta = X.dot(theta)
 
-    j = 1.0 / m * (np.dot(-y.T, np.log(sigmoid(x_dot_theta))) - np.dot((1 - y).T, np.log(1 - sigmoid(x_dot_theta))))
-    j = j.flatten()
+    j = 1.0 / m * (-y.T.dot(np.log(sigmoid(x_dot_theta))) - (1 - y).T.dot(np.log(1 - sigmoid(x_dot_theta))))
 
-    grad = 1.0 / m * np.dot((sigmoid(x_dot_theta) - y).T, x).T
+    grad = 1.0 / m * (sigmoid(x_dot_theta) - y).T.dot(X)
 
-    return j[0], grad
+    return j, grad

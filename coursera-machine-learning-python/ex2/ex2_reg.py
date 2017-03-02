@@ -13,29 +13,29 @@ from predict import predict
 # Load Data
 # The first two columns contains the X values and the third column contains the label (y).
 data = np.loadtxt(open("ex2data2.txt", "r"), delimiter=",")
-x = data[:, 0:2]
-y = data[:, 2:3]
+X = data[:, 0:2]
+y = data[:, 2]
 
-plot_data(x, y)
-# Labels and Legend
+plt.figure()
+plot_data(X, y)
 plt.xlabel('Microchip Test 1')
 plt.ylabel('Microchip Test 2')
 plt.legend(['y = 1', 'y = 0'], loc='upper right', numpoints=1)
+plt.show()
 
 
 # =========== Part 1: Regularized Logistic Regression ============
 # Add Polynomial Features
 # Note that map_feature also adds a column of ones for us, so the intercept term is handled
-x = map_feature(x[:, 0:1], x[:, 1:2])
-
-m, n = x.shape
+X = map_feature(X[:, 0], X[:, 1])
+m, n = X.shape
 # Initialize fitting parameters
 initial_theta = np.zeros((n, 1))
 
 # Set regularization parameter lambda to 1
 l = 1.0
 
-j, g = cost_function_reg(initial_theta, x, y, l)
+j, g = cost_function_reg(initial_theta, X, y, l)
 
 print 'Cost at initial theta (zeros):', j
 
@@ -48,18 +48,19 @@ initial_theta = np.zeros((n, 1))
 l = 1.0
 
 # Optimize
-theta, nfeval, rc = opt.fmin_tnc(func=cost_function_reg, x0=initial_theta, args=(x, y, l), messages=0)
+theta, nfeval, rc = opt.fmin_tnc(func=cost_function_reg, x0=initial_theta, args=(X, y, l), messages=0)
 
 # Plot Boundary
-theta.resize(len(theta), 1)
-plot_decision_boundary(theta, x, y)
+plt.figure()
+plot_data(X[:, 1:], y)
 plt.xlabel('Microchip Test 1')
 plt.ylabel('Microchip Test 2')
+plt.legend(['y = 1', 'y = 0'], loc='upper right', numpoints=1)
+
+plot_decision_boundary(theta, X, y)
+plt.show()
 
 # Compute accuracy on our training set
-p = predict(theta, x)
+p = predict(theta, X)
 
 print 'Train Accuracy:', np.mean(p == y) * 100
-
-
-plt.show()
