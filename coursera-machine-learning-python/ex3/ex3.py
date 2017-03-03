@@ -18,39 +18,39 @@ print 'Loading and Visualizing Data...'
 
 # Load Training Data
 mat_data = sio.loadmat('ex3data1.mat')
-x = mat_data['X']
-y = mat_data['y']
-m, n = x.shape
+X = mat_data['X']
+y = mat_data['y'].ravel()
+m, n = X.shape
 
 # Randomly select 100 data points to display
 rand_indices = np.random.permutation(m)
-sel = x[rand_indices[0:100], :]
+sel = X[rand_indices[0:100], :]
+plt.figure()
 display_data(sel, padding=1)
+plt.show()
 
 
 # ============ Part 2a: Vectorize Logistic Regression ============
 # Test case for lrCostFunction
-theta_t = np.array([-2, -1, 1, 2]).reshape(4, 1)
-x_t = np.hstack((np.ones((5, 1)), np.arange(1, 16).reshape(5, 3, order='F') / 10.0))
-y_t = np.array([1, 0, 1, 0, 1]).reshape(5, 1)
+theta_t = np.array([-2, -1, 1, 2])
+X_t = np.hstack((np.ones((5, 1)), np.arange(1, 16).reshape(5, 3, order='F') / 10.0))
+y_t = np.array([1, 0, 1, 0, 1])
 lambda_t = 3
 
-j, grad = lr_cost_function(theta_t, x_t, y_t, lambda_t)
+j, grad = lr_cost_function(theta_t, X_t, y_t, lambda_t)
 
 print 'Cost:', j
 print 'Expected cost: 2.534819'
 print 'Gradients: \n', grad
-print 'Expected gradients: \n', '0.146561\n-0.548558\n0.724722\n1.398003'
+print 'Expected gradients: 0.146561 -0.548558 0.724722 1.398003'
+
 
 #  ============ Part 2b: One-vs-All Training ============
 print 'Training One-vs-All Logistic Regression...'
 l = 0.1
-all_theta = one_vs_all(x, y, num_labels, l)
+all_theta = one_vs_all(X, y, num_labels, l)
 
 
 # ================ Part 3: Predict for One-Vs-All ================
-pred = predict_one_vs_all(all_theta, x)
+pred = predict_one_vs_all(all_theta, X)
 print 'Training Set Accuracy:', np.mean(pred == y) * 100
-
-
-plt.show()
