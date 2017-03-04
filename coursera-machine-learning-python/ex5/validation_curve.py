@@ -10,28 +10,29 @@ def validation_curve(x, y, x_val, y_val):
 
     Parameters
     ----------
-    x : ndarray
-        Training data of train set.
-    y : ndarray
-        Labels of train set.
-    x_val : ndarray
-        Training data of cross validation set.
-    y_val : ndarray
+    X : ndarray, shape (n_train_samples, n_features)
+        Samples of training set, where n_train_samples is the number of samples in training set and n_features is the
+        number of features.
+    y : ndarray, shape (n_train_samples,)
+        Labels of training set.
+    X_val : ndarray, shape (n_val_samples, n_features)
+        Samples of cross validation set, where n_val_samples is the number of samples in cross validation set.
+    y_val : ndarray, shape (n_val_samples,)
         Labels of cross validation set.
 
     Returns
     -------
-    lambda_vec : ndarray
-        The regularization parameters used for models.
-    error_train : ndarray
+    lambda_vec : ndarray, shape (n_lambdas,)
+        The regularization parameters used for models, where n_lambdas is the number of lambda values used for the
+        validation curve.
+    error_train : ndarray, shape (n_lambdas,)
         Train set error.
-    error_val : ndarray
+    error_val : ndarray, shape (n_lambdas,)
         Cross validation set error.
     """
     lambda_vec = np.array([0, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3, 10])
     error_train = np.zeros(len(lambda_vec))
     error_val = np.zeros(len(lambda_vec))
-    print 'validation_curve'
     m = x.shape[0]
     m_val = x_val.shape[0]
     for i in range(len(lambda_vec)):

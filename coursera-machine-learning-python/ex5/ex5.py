@@ -15,33 +15,33 @@ from validation_curve import validation_curve
 # =========== Part 1: Loading and Visualizing Data =============
 print 'Loading and Visualizing Data...'
 mat_data = sio.loadmat('ex5data1.mat')
-x = mat_data['X']
-y = mat_data['y']
-x_test = mat_data['Xtest']
-y_test = mat_data['ytest']
-x_val = mat_data['Xval']
-y_val = mat_data['yval']
-m, n = x.shape
-m_val = x_val.shape[0]
-m_test = x_test.shape[0]
+X = mat_data['X']
+y = mat_data['y'].ravel()
+X_test = mat_data['Xtest']
+y_test = mat_data['ytest'].ravel()
+X_val = mat_data['Xval']
+y_val = mat_data['yval'].ravel()
+m = X.shape[0]
+m_val = X_val.shape[0]
+m_test = X_test.shape[0]
 
 plt.figure()
-plt.plot(x, y, linestyle='', marker='x', color='r')
+plt.plot(X, y, linestyle='', marker='x', color='r')
 plt.xlabel('Change in water level (x)')
 plt.ylabel('Water flowing out of the dam (y)')
 
 
 # =========== Part 2: Regularized Linear Regression Cost =============
-theta = np.array([[1], [1]])
-j, grad = linear_reg_cost_function(theta, np.hstack((np.ones((m, 1)), x)), y, 1)
+theta = np.array([1, 1])
+j, _ = linear_reg_cost_function(theta, np.hstack((np.ones((m, 1)), X)), y, 1)
 
 print 'Cost at theta = [1 ; 1]:', j
 print '(this value should be about 303.993192)'
 
 
 # =========== Part 3: Regularized Linear Regression Gradient =============
-theta = np.array([[1], [1]])
-j, grad = linear_reg_cost_function(theta, np.hstack((np.ones((m, 1)), x)), y, 1)
+theta = np.array([1, 1])
+_, grad = linear_reg_cost_function(theta, np.hstack((np.ones((m, 1)), X)), y, 1)
 
 print 'Gradient at theta = [1 ; 1]:', grad.ravel()
 print '(this value should be about [-15.303016; 598.250744])'
@@ -50,23 +50,20 @@ print '(this value should be about [-15.303016; 598.250744])'
 # =========== Part 4: Train Linear Regression =============
 # Train linear regression with lambda = 0
 l = 0
-theta = train_linear_reg(np.hstack((np.ones((m, 1)), x)), y, l)
+theta = train_linear_reg(np.hstack((np.ones((m, 1)), X)), y, l)
 
-pred = np.hstack((np.ones((m, 1)), x)).dot(theta)
+pred = np.hstack((np.ones((m, 1)), X)).dot(theta)
 
 plt.figure()
-plt.plot(x, y, linestyle='', marker='x', color='r')
-plt.plot(x, pred, linestyle='--', marker='', color='b')
+plt.plot(X, y, linestyle='', marker='x', color='r')
+plt.plot(X, pred, linestyle='--', marker='', color='b')
 plt.xlabel('Change in water level (x)')
 plt.ylabel('Water flowing out of the dam (y)')
-
-print np.hstack((np.ones((m, 1)), x)).dot(theta).shape
-print (np.hstack((np.ones((m, 1)), x)).dot(theta) - y).shape
 
 
 # =========== Part 5: Learning Curve for Linear Regression =============
 l = 0
-error_train, error_val = learning_curve(np.hstack((np.ones((m, 1)), x)), y, np.hstack((np.ones((m_val, 1)), x_val)), y_val, l)
+error_train, error_val = learning_curve(np.hstack((np.ones((m, 1)), X)), y, np.hstack((np.ones((m_val, 1)), X_val)), y_val, l)
 
 plt.figure()
 plt.plot(range(1, m + 1), error_train, color='b', label='Train')
@@ -83,15 +80,15 @@ for i in range(m):
 # =========== Part 6: Feature Mapping for Polynomial Regression =============
 p = 8
 
-x_poly = poly_features(x, p)
+x_poly = poly_features(X, p)
 x_poly, mu, sigma = feature_normalize(x_poly)
 x_poly = np.hstack((np.ones((m, 1)), x_poly))
 
-x_poly_test = poly_features(x_test, p)
+x_poly_test = poly_features(X_test, p)
 x_poly_test, dummy_mu, dummy_sigma = feature_normalize(x_poly_test, mu, sigma)
 x_poly_test = np.hstack((np.ones((m_test, 1)), x_poly_test))
 
-x_poly_val = poly_features(x_val, p)
+x_poly_val = poly_features(X_val, p)
 x_poly_val, dummy_mu, dummy_sigma = feature_normalize(x_poly_val, mu, sigma)
 x_poly_val = np.hstack((np.ones((m_val, 1)), x_poly_val))
 
@@ -104,8 +101,8 @@ l = 0
 theta = train_linear_reg(x_poly, y, l, iteration=500)
 
 plt.figure()
-plt.plot(x, y, linestyle='', marker='x', color='r')
-plot_fit(np.min(x), np.max(x), mu, sigma, theta, p)
+plt.plot(X, y, linestyle='', marker='x', color='r')
+plot_fit(np.min(X), np.max(X), mu, sigma, theta, p)
 plt.xlabel('Change in water level (x)')
 plt.ylabel('Water flowing out of the dam (y)')
 plt.title('Polynomial Regression Fit (lambda = {})'.format(l))

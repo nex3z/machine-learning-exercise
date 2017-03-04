@@ -1,34 +1,34 @@
 import numpy as np
 
 
-def feature_normalize(x, mu=None, sigma=None):
+def feature_normalize(X, mu=None, sigma=None):
     """
     Normalizes the features in x.
 
     Parameters
     ----------
-    x : ndarray
-        Features to be normalized.
-    mu : float
-        Mean value for normalization. If not provided, it will be calculated from x.
-    sigma : float
-        Standard deviation for normalization. If not provided, it will be calculated from x.
+    X : ndarray, shape (n_samples, n_features)
+        Samples to be normalized, where n_samples is the number of samples and n_features is the number of features.
+    mu : ndarray, shape (n_features,)
+        Mean value for normalization. If not provided, it will be calculated from X.
+    sigma : ndarray, shape (n_features,)
+        Standard deviation for normalization. If not provided, it will be calculated from X.
 
     Returns
     -------
-    x_norm : ndarray
+    X_norm : ndarray, shape (n_samples, n_features)
         The normalized features.
-    mu : float
-        Mean value of x.
-    sigma : float
-        Standard deviation of x.
+    mu : ndarray, shape (n_features,)
+        Mean value of X.
+    sigma : ndarray, shape (n_features,)
+        Standard deviation of X.
     """
     if mu is None:
-        mu = np.mean(x, axis=0)
+        mu = np.mean(X, axis=0)
 
     if sigma is None:
-        sigma = np.std(x, ddof=1, axis=0)
+        sigma = np.std(X, ddof=1, axis=0)
 
-    x_norm = (x - mu) / sigma
+    X_norm = (X - mu) / sigma
 
-    return x_norm, mu, sigma
+    return X_norm, mu, sigma

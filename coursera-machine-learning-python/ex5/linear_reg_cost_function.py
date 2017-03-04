@@ -1,17 +1,17 @@
 import numpy as np
 
 
-def linear_reg_cost_function(theta, x, y, l):
+def linear_reg_cost_function(theta, X, y, l):
     """
     Compute cost and gradient for regularized linear regression with multiple variables.
 
     Parameters
     ----------
-    theta : ndarray
+    theta : ndarray, shape (n_features,)
         Linear regression parameter.
-    x : ndarray
-        Training data.
-    y : ndarray
+    X : ndarray, shape (n_samples, n_features)
+        Samples, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
         Labels.
     l : float
         Regularization parameter.
@@ -20,16 +20,15 @@ def linear_reg_cost_function(theta, x, y, l):
     -------
     j : numpy.float64
         The cost of using theta as the parameter for linear regression.
-    grad : ndarray
+    grad : ndarray, shape (n_features,)
         The gradient of using theta as the parameter for linear regression.
     """
-    m, n = x.shape
-    theta = theta.reshape(n, 1)
+    m = X.shape[0]
 
-    j = 1.0 / (2 * m) * np.sum(np.square(x.dot(theta) - y)) + 1.0 * l / (2 * m) * np.sum(np.square(theta[1:, ]))
+    j = 1.0 / (2 * m) * np.sum(np.square(X.dot(theta) - y)) + 1.0 * l / (2 * m) * np.sum(np.square(theta[1:]))
 
     mask = np.eye(len(theta))
     mask[0, 0] = 0
-    grad = 1.0 / m * x.T.dot(x.dot(theta) - y) + 1.0 * l / m * (mask.dot(theta))
+    grad = 1.0 / m * X.T.dot(X.dot(theta) - y) + 1.0 * l / m * (mask.dot(theta))
 
     return j, grad
