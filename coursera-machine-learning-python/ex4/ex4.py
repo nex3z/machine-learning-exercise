@@ -22,13 +22,15 @@ print 'Loading and Visualizing Data...'
 
 # Load Training Data
 mat_data = sio.loadmat('ex4data1.mat')
-x = mat_data['X']
-y = mat_data['y']
-m, n = x.shape
+X = mat_data['X']
+y = mat_data['y'].ravel()
+m, n = X.shape
 
 # Randomly select 100 data points to display
 rand_indices = np.random.permutation(m)
-display_data(x[rand_indices[0:100], :], padding=1)
+plt.figure()
+display_data(X[rand_indices[0:100], :], padding=1)
+plt.show()
 
 
 # ================ Part 2: Loading Parameters ================
@@ -46,14 +48,14 @@ params_trained = np.hstack((theta_1.flatten(), theta_2.flatten()))
 # ================ Part 3: Compute Cost (Feedforward) ================
 print 'Feedforward Using Neural Network...'
 l = 0
-J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, x, y, l)
+J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
 print 'Cost at parameters (loaded from ex4weights):', J, '(this value should be about 0.287629)'
 
 
 # =============== Part 4: Implement Regularization ===============
 print 'Checking Cost Function (w/ Regularization)...'
 l = 1
-J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, x, y, l)
+J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
 print 'Cost at parameters (loaded from ex4weights):', J, '(this value should be about 0.383770)'
 
 
@@ -68,7 +70,7 @@ print g
 print 'Initializing Neural Network Parameters...'
 initial_theta_1 = rand_initialize_weights(input_layer_size, hidden_layer_size)
 initial_theta_2 = rand_initialize_weights(hidden_layer_size, num_labels)
-initial_nn_params = np.hstack((initial_theta_1.flatten(), initial_theta_2.flatten()))
+initial_nn_params = np.hstack((initial_theta_1.ravel(), initial_theta_2.ravel()))
 
 
 # =============== Part 7: Implement Backpropagation ===============
@@ -78,7 +80,7 @@ print 'Checking Backpropagation...'
 # =============== Part 8: Implement Regularization ===============
 print 'Checking Backpropagation (w/ Regularization)...'
 l = 3
-debug_j, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, x, y, l)
+debug_j, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
 print 'Cost at (fixed) debugging parameters (w/ lambda = {}): {}'.format(l, debug_j)
 print '(for lambda = 3, this value should be about 0.576051)'
 
@@ -87,23 +89,22 @@ print '(for lambda = 3, this value should be about 0.576051)'
 print 'Training Neural Network...'
 l = 1
 result = opt.minimize(fun=nn_cost_function, x0=initial_nn_params.flatten(),
-                      args=(input_layer_size, hidden_layer_size, num_labels, x, y, l),
+                      args=(input_layer_size, hidden_layer_size, num_labels, X, y, l),
                       method='TNC', jac=True, options={'maxiter': 150})
 params_trained = result.x
-theta_1_trained = np.reshape(params_trained[0:(hidden_layer_size * (input_layer_size + 1)), ],
+Theta_1_trained = np.reshape(params_trained[0:(hidden_layer_size * (input_layer_size + 1)), ],
                              (hidden_layer_size, input_layer_size + 1))
-theta_2_trained = np.reshape(params_trained[(hidden_layer_size * (input_layer_size + 1)):, ],
+Theta_2_trained = np.reshape(params_trained[(hidden_layer_size * (input_layer_size + 1)):, ],
                              (num_labels, hidden_layer_size + 1))
 
 
 # ================= Part 9: Visualize Weights =================
 print 'Visualizing Neural Network...'
-display_data(theta_1_trained[:, 1:], padding=1)
+plt.figure()
+display_data(Theta_1_trained[:, 1:], padding=1)
+plt.show()
 
 
 # ================= Part 10: Implement Predict =================
-pred = predict(theta_1_trained, theta_2_trained, x)
+pred = predict(Theta_1_trained, Theta_2_trained, X)
 print 'Training Set Accuracy:', np.mean(pred == y) * 100
-
-
-plt.show()

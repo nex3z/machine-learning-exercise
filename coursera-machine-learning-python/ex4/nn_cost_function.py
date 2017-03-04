@@ -10,7 +10,7 @@ def nn_cost_function(nn_params, input_layer_size, hidden_layer_size, num_labels,
 
     Parameters
     ----------
-    nn_params : ndarray
+    nn_params : ndarray, shape (n_params,)
         Parameters for the neural network, "unrolled" into a vector.
     input_layer_size : int
         The size of the input layer.
@@ -18,18 +18,18 @@ def nn_cost_function(nn_params, input_layer_size, hidden_layer_size, num_labels,
         The size of the hidden layer.
     num_labels : int
         The number of labels.
-    X : ndarray
-        Training data, m by n matrix where m is the number of data samples.
-    y : ndarray
-        Labels, m by 1 matrix.
+    X : ndarray, shape (n_samples, n_features)
+        Samples, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels.
     l : float
         Regularization parameter.
 
     Returns
     -------
-    J : numpy.float64
+    j : numpy.float64
         The cost of the neural network w.r.t. the parameters.
-    grad: ndarray
+    grad: ndarray, shape (n_params,)
         The gradient of the neural network w.r.t. the parameters.
     """
     Theta_1 = np.reshape(nn_params[0:(hidden_layer_size * (input_layer_size + 1)), ],
