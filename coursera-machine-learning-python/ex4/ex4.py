@@ -47,16 +47,16 @@ params_trained = np.hstack((theta_1.flatten(), theta_2.flatten()))
 
 # ================ Part 3: Compute Cost (Feedforward) ================
 print 'Feedforward Using Neural Network...'
-l = 0
-J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
-print 'Cost at parameters (loaded from ex4weights):', J, '(this value should be about 0.287629)'
+l = 0.0
+j, _ = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
+print 'Cost at parameters (loaded from ex4weights):', j, '(this value should be about 0.287629)'
 
 
 # =============== Part 4: Implement Regularization ===============
 print 'Checking Cost Function (w/ Regularization)...'
-l = 1
-J, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
-print 'Cost at parameters (loaded from ex4weights):', J, '(this value should be about 0.383770)'
+l = 1.0
+j, _ = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
+print 'Cost at parameters (loaded from ex4weights):', j, '(this value should be about 0.383770)'
 
 
 # ================ Part 5: Sigmoid Gradient  ================
@@ -79,16 +79,16 @@ print 'Checking Backpropagation...'
 
 # =============== Part 8: Implement Regularization ===============
 print 'Checking Backpropagation (w/ Regularization)...'
-l = 3
-debug_j, grad = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
+l = 3.0
+debug_j, _ = nn_cost_function(params_trained, input_layer_size, hidden_layer_size, num_labels, X, y, l)
 print 'Cost at (fixed) debugging parameters (w/ lambda = {}): {}'.format(l, debug_j)
 print '(for lambda = 3, this value should be about 0.576051)'
 
 
 # =================== Part 8: Training NN ===================
 print 'Training Neural Network...'
-l = 1
-result = opt.minimize(fun=nn_cost_function, x0=initial_nn_params.flatten(),
+l = 1.0
+result = opt.minimize(fun=nn_cost_function, x0=initial_nn_params,
                       args=(input_layer_size, hidden_layer_size, num_labels, X, y, l),
                       method='TNC', jac=True, options={'maxiter': 150})
 params_trained = result.x

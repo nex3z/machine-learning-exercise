@@ -46,7 +46,7 @@ def format_tile(x, width=-1, padding=0):
     Parameters
     ----------
     x : ndarray, shape (sample_size, )
-        Sample data, 1-d array, where sample_size is the size of each sample.
+        Sample data, where sample_size is the size of each sample.
     width : int
         Width of the image.
     padding : int
