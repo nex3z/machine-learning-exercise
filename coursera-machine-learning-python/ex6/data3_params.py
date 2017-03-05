@@ -8,14 +8,14 @@ def data3_params(X, y, X_val, y_val):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
-    y : ndarray
-        Target values (class labels in classification).
+        Training samples, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels for training set.
     X_val : ndarray, shape (n_val_samples, n_features)
-        Cross validation vectors, where n_val_samples is the number of cross validation samples and n_features is the
+        Cross validation samples, where n_val_samples is the number of cross validation samples and n_features is the
         number of features.
-    y_val : ndarray
-        Target values for cross validation (class labels in classification).
+    y_val : ndarray, shape (n_val_samples,)
+        Labels for cross validation set.
 
     Returns
     -------
@@ -32,7 +32,7 @@ def data3_params(X, y, X_val, y_val):
     for C in C_cands:
         for gamma in gamma_cands:
             clf = svm.SVC(C=C, kernel='rbf', gamma=gamma)
-            clf.fit(X, y.ravel())
+            clf.fit(X, y)
             score = clf.score(X_val, y_val)
             if score > max_score:
                 max_score = score

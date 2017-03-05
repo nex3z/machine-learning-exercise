@@ -11,7 +11,6 @@ from get_vocablist import get_vocablist
 # ==================== Part 1: Email Preprocessing ====================
 print 'Preprocessing sample email (emailSample1.txt)...'
 
-# Extract Features
 with open('emailSample1.txt') as f:
     file_contents = f.read().replace('\n', '')
 
@@ -33,15 +32,15 @@ print 'Number of non-zero entries:', np.sum(features > 0)
 # Load the Spam Email dataset
 mat_data = sio.loadmat('spamTrain.mat')
 X = mat_data['X']
-y = mat_data['y']
+y = mat_data['y'].ravel()
 
 print 'Training Linear SVM (Spam Classification)...'
 C = 0.1
 clf = svm.LinearSVC(C=C)
-clf.fit(X, y.ravel())
+clf.fit(X, y)
 p = clf.predict(X)
 
-print 'Training Accuracy:', np.mean(p == y.ravel()) * 100
+print 'Training Accuracy:', np.mean(p == y) * 100
 
 
 # =================== Part 4: Test Spam Classification ================
@@ -49,13 +48,12 @@ print 'Training Accuracy:', np.mean(p == y.ravel()) * 100
 
 mat_data = sio.loadmat('spamTest.mat')
 X_test = mat_data['Xtest']
-print X_test.shape
-y_test = mat_data['ytest']
+y_test = mat_data['ytest'].ravel()
 
 print 'Evaluating the trained Linear SVM on a test set...'
 p = clf.predict(X_test)
 
-print 'Test Accuracy:', np.mean(p == y_test.ravel()) * 100
+print 'Test Accuracy:', np.mean(p == y_test) * 100
 
 
 # ================= Part 5: Top Predictors of Spam ====================

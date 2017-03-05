@@ -11,7 +11,7 @@ def split(delimiters, string, maxsplit=0):
 
 def process_email(email_contents):
     """
-    Preprocesses a the body of an email and returns a list of word_indices
+    Preprocesses a the body of an email and returns a list of word indices.
 
     Parameters
     ----------

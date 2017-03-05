@@ -11,13 +11,12 @@ def visualize_boundary(X, y, clf):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
-    y : ndarray
-        Target values (class labels in classification).
-    clf : Support Vector Classification
+        Samples, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels.
+    clf : sklearn.svm.classes.SVC
         The trained SVM.
     """
-    print type(clf)
     plot_data(X, y)
     x1_plot = np.linspace(np.min(X[:, 0]), np.max(X[:, 0]), 100)
     x2_plot = np.linspace(np.min(X[:, 1]), np.max(X[:, 1]), 100)

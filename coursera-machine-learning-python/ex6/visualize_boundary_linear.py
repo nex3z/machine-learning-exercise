@@ -11,9 +11,9 @@ def visualize_boundary_linear(X, y, clf):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
-    y : ndarray
-        Target values (class labels in classification).
+        Samples, where n_samples is the number of samples and n_features is the number of features.
+    y : ndarray, shape (n_samples,)
+        Labels.
     clf : Support Vector Classification
         The trained SVM.
     """
