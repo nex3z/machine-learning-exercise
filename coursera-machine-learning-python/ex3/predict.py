@@ -19,7 +19,7 @@ def predict(Theta_1, Theta_2, X):
     Returns
     -------
     p : ndarray, shape (n_samples,)
-         The prediction for x, which is an m by 1 array.
+         The prediction for x.
     """
 
     m, n = X.shape
