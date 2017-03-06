@@ -8,9 +8,9 @@ def find_closest_centroids(X, centroids):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
     centroids : ndarray, shape (K, n_features)
-        The current centroids.
+        The current centroids, where K is the number of centroids.
 
     Returns
     -------

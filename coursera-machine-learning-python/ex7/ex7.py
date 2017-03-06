@@ -20,7 +20,6 @@ X = mat_data['X']
 # Select an initial set of centroids
 K = 3  # 3 Centroids
 initial_centroids = np.array([[3, 3], [6, 2], [8, 5]])
-print initial_centroids
 
 # Find the closest centroids for the examples using the initial_centroids
 idx = find_closest_centroids(X, initial_centroids)
@@ -38,7 +37,7 @@ centroids = compute_centroids(X, idx, K)
 
 print 'Centroids computed after initial finding of closest centroids:'
 print centroids
-print '(the centroids should be \n[ 2.428301 3.157924 ]\n[ 5.813503 2.633656 ]\n[ 7.119387 3.616684 ]'
+print '(the centroids should be [ 2.428301 3.157924 ], [ 5.813503 2.633656 ], [ 7.119387 3.616684 ])'
 
 
 # =================== Part 3: K-Means Clustering ======================
@@ -73,7 +72,6 @@ img_size = A.shape
 
 # Reshape the image into an Nx3 matrix where N = number of pixels.
 X = A.reshape([img_size[0] * img_size[1], img_size[2]])
-print 'X.shape =', X.shape
 
 K = 16
 max_iters = 10

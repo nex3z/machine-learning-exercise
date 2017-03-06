@@ -4,10 +4,11 @@ import numpy as np
 def feature_normalize(X):
     """
     Normalizes the features in X.
+
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
 
     Returns
     -------

@@ -31,7 +31,6 @@ def run_k_means(X, initial_centroids, max_iters, plot_progress=False):
     K = initial_centroids.shape[0]
     centroids = initial_centroids
     history_centroids = np.zeros((max_iters, centroids.shape[0], centroids.shape[1]))
-    print history_centroids.shape
     idx = np.zeros(X.shape[0])
 
     for i in range(max_iters):

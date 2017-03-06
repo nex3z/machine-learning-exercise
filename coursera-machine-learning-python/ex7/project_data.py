@@ -5,7 +5,7 @@ def project_data(X, U, K):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
     U : ndarray, shape (n_features, n_features)
         Unitary matrices.
     K : int

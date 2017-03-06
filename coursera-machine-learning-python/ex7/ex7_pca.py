@@ -29,6 +29,7 @@ plt.scatter(X[:, 0], X[:, 1], facecolors='none', edgecolors='b')
 plt.xlim(0.5, 6.5)
 plt.ylim(2, 8)
 plt.gca().set_aspect('equal', adjustable='box')
+plt.show()
 
 
 # =============== Part 2: Principal Component Analysis ===============
@@ -43,6 +44,7 @@ U, S, V = pca(X_norm)
 plt.figure()
 draw_line(mu, mu + 1.5 * S[0] * U[:,0].T)
 draw_line(mu, mu + 1.5 * S[1] * U[:,1].T)
+plt.show()
 
 print 'Top eigenvector:'
 print 'U = ', U[:, 0]
@@ -77,6 +79,7 @@ axes = plt.gca()
 axes.set_xlim([-4, 3])
 axes.set_ylim([-4, 3])
 axes.set_aspect('equal', adjustable='box')
+plt.show()
 
 
 # =============== Part 4: Loading and Visualizing Face Data =============
@@ -86,7 +89,9 @@ print 'Loading face dataset.'
 mat_data = sio.loadmat('ex7faces.mat')
 X = mat_data['X']
 
+plt.figure()
 display_data(X[0:100, :])
+plt.show()
 
 
 # =========== Part 5: PCA on Face Data: Eigenfaces  ===================
@@ -99,7 +104,9 @@ X_norm, mu, sigma = feature_normalize(X)
 U, S, V = pca(X_norm)
 
 # Visualize the top 36 eigenvectors found
+plt.figure()
 display_data(U[:, 0:36].T)
+plt.show()
 
 
 # ============= Part 6: Dimension Reduction for Faces =================
@@ -123,6 +130,7 @@ ax1.set_title('Original faces')
 ax2 = fig.add_subplot(1, 2, 2)
 display_data(X_rec[1:100,:], axes=ax2)
 ax2.set_title('Recovered faces')
+plt.show()
 
 
 # === Part 8(a): Optional (ungraded) Exercise: PCA for Visualization ===
@@ -150,6 +158,7 @@ ax.set_xlim(0, 1)
 ax.set_ylim(0, 1)
 ax.set_zlim(0, 1)
 plt.title('Pixel dataset plotted in 3D. Color shows centroid memberships')
+plt.show()
 
 
 # === Part 8(b): Optional (ungraded) Exercise: PCA for Visualization ===
@@ -165,6 +174,4 @@ Z = project_data(X_norm, U, 2)
 plt.figure()
 plot_data_points(Z[sel, ], idx[sel, ], K)
 plt.title('Pixel dataset plotted in 2D, using PCA for dimensionality reduction')
-
-
 plt.show()

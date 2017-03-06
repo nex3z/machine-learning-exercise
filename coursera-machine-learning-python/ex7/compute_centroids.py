@@ -8,7 +8,7 @@ def compute_centroids(X, idx, K):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
     idx : ndarray, shape(n_samples, 1)
         Centroid assignments.
     K : int

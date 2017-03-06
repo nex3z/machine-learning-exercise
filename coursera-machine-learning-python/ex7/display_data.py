@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def display_data(x, tile_width=-1, padding=0, axes=None, show=False):
+def display_data(x, tile_width=-1, padding=0, axes=None):
     """
     Display data in a nice grid
 
@@ -42,11 +42,7 @@ def display_data(x, tile_width=-1, padding=0, axes=None, show=False):
     if axes:
         axes.imshow(data, cmap='gray', extent=[0, 1, 0, 1])
     else:
-        plt.figure()
         plt.imshow(data, cmap='gray', extent=[0, 1, 0, 1])
-
-    if show:
-        plt.show()
 
 
 def format_tile(x, width=-1, padding=0):

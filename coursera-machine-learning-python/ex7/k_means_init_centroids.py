@@ -8,7 +8,7 @@ def k_means_init_centroids(X, K):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
     K : int
         The number of centroids.
 

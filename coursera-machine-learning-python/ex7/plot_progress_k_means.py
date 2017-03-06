@@ -11,7 +11,7 @@ def plot_progress_k_means(X, history_centroids, idx, K, i):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
     history_centroids : ndarray, shape (n_max_iters, K, n_features)
         The history of centroids assignment.
     idx : ndarray, shape (n_samples, 1)
@@ -25,7 +25,6 @@ def plot_progress_k_means(X, history_centroids, idx, K, i):
     plt.plot(history_centroids[0:i+1, :, 0], history_centroids[0:i+1, :, 1],
              linestyle='', marker='x', markersize=10, linewidth=3, color='k')
     plt.title('Iteration number {}'.format(i + 1))
-    print history_centroids.shape
     for centroid_idx in range(history_centroids.shape[1]):
         for iter_idx in range(i):
             draw_line(history_centroids[iter_idx, centroid_idx, :], history_centroids[iter_idx + 1, centroid_idx, :])
