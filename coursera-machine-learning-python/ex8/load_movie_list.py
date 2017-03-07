@@ -1,6 +1,7 @@
 def load_movie_list():
     """
     Load movie list from movie_ids.txt.
+
     Returns
     -------
     movie_list : list

@@ -7,11 +7,11 @@ def cofi_cost_func(params, Y, R, num_users, num_movies, num_features, l):
 
     Parameters
     ----------
-    params : ndarray, shape ((num_users + num_movies) * num_features, )
+    params : ndarray, shape ((num_users + num_movies) * num_features,)
         Parameters for collaborative filtering.
-    Y : ndarray, shape (n_movies, n_users)
+    Y : ndarray, shape (num_movies, num_users)
         Ratings, where n_movies is the number of movies and n_users is the number of users.
-    R : ndarray, shape (n_samples, n_users)
+    R : ndarray, shape (num_movies, num_users)
         R(i,j) = 1 if and only if user j gave a rating to movie i.
     num_users : int
         Number of users.
@@ -19,14 +19,14 @@ def cofi_cost_func(params, Y, R, num_users, num_movies, num_features, l):
         Number of movies.
     num_features : int
         Number of features.
-    l : float, shape ((num_users + num_movies) * num_features, )
+    l : float, shape ((num_users + num_movies) * num_features,)
         Regularization parameter.
 
     Returns
     -------
     J : numpy.float64
         The cost for collaborative filtering.
-    grad : ndarray, shape (n_movies, n_users)
+    grad : ndarray, shape ((num_users + num_movies) * num_features,)
         The gradient for collaborative filtering.
     """
     X = params[0:num_movies*num_features].reshape((num_movies, num_features))

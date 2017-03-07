@@ -26,6 +26,7 @@ plt.figure()
 plt.imshow(Y, aspect='auto')
 plt.ylabel('Movies')
 plt.xlabel('Users')
+plt.show()
 
 
 # ============ Part 2: Collaborative Filtering Cost Function ===========

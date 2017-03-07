@@ -11,10 +11,10 @@ def visualize_fit(X, mu, sigma2):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
-    mu : ndarray, shape (n_feature, )
+        Samples, where n_samples is the number of samples and n_features is the number of features.
+    mu : ndarray, shape (n_feature,)
         The mean of each feature.
-    sigma2 : ndarray, shape (n_feature, )
+    sigma2 : ndarray, shape (n_feature,)
         The variance of each feature.
     """
     l = np.arange(0, 35.5, 0.5)

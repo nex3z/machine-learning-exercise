@@ -4,18 +4,19 @@ import numpy as np
 def multivariate_gaussian(X, mu, Sigma2):
     """
     Computes the probability density function of the multivariate gaussian distribution.
+
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
-    mu : ndarray, shape (n_feature, )
+        Samples, where n_samples is the number of samples and n_features is the number of features.
+    mu : ndarray, shape (n_feature,)
         The mean of each feature.
-    sigma2 : ndarray, shape (n_feature, )
+    sigma2 : ndarray, shape (n_feature,)
         The variance of each feature.
 
     Returns
     -------
-    p : ndarray, shape (n_samples, )
+    p : ndarray, shape (n_samples,)
         The probability density function of the examples X under the multivariate gaussian distribution with parameters
         mu and Sigma2.
     """

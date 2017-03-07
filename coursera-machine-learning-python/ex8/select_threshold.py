@@ -1,15 +1,15 @@
 import numpy as np
 
 
-def select_threshold(yval, pval):
+def select_threshold(y_val, p_val):
     """
     Find the best threshold (epsilon) to use for selecting outliers.
 
     Parameters
     ----------
-    yval : ndarray, shape (n_samples, n_features)
+    y_val : ndarray, shape (n_samples,)
         Labels from validation set, where n_samples is the number of samples and n_features is the number of features.
-    pval : ndarray, shape (n_samples, n_features)
+    p_val : ndarray, shape (n_samples,)
         The probability density from validation set.
 
     Returns
@@ -19,16 +19,16 @@ def select_threshold(yval, pval):
     best_F1 : numpy.float64
         The best F1 score.
     """
-    step_size = (np.max(pval) - np.min(pval)) / 1000
+    step_size = (np.max(p_val) - np.min(p_val)) / 1000
 
     best_epsilon = 0.0
     best_F1 = 0.0
 
-    for epsilon in np.arange(min(pval), max(pval), step_size):
-        predictions = pval < epsilon
-        tp = np.sum(predictions[np.nonzero(yval.ravel() == True)])
-        fp = np.sum(predictions[np.nonzero(yval.ravel() == False)])
-        fn = np.sum(yval[np.nonzero(predictions.ravel() == False)] == True)
+    for epsilon in np.arange(min(p_val), max(p_val), step_size):
+        predictions = p_val < epsilon
+        tp = np.sum(predictions[np.nonzero(y_val == True)])
+        fp = np.sum(predictions[np.nonzero(y_val == False)])
+        fn = np.sum(y_val[np.nonzero(predictions == False)] == True)
         if tp != 0:
             prec = 1.0 * tp / (tp + fp)
             rec = 1.0 * tp / (tp + fn)

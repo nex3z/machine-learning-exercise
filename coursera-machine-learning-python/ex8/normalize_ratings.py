@@ -16,7 +16,7 @@ def normalize_ratings(Y, R):
     -------
     Y_norm : ndarray, shape (n_movies, n_users)
         Normalized Y with each movie has am average rating of 0.
-    Y_mean : ndarray, shape (n_movies, 1)
+    Y_mean : ndarray, shape (n_movies,)
         Mean rating for each movie.
     """
     m = Y.shape[0]

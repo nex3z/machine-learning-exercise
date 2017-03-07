@@ -8,13 +8,13 @@ def estimate_gaussian(X):
     Parameters
     ----------
     X : ndarray, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and n_features is the number of features.
+        Samples, where n_samples is the number of samples and n_features is the number of features.
 
     Returns
     -------
-    mu : ndarray, shape (n_feature, )
+    mu : ndarray, shape (n_feature,)
         The mean of each feature.
-    sigma2 : ndarray, shape (n_feature, )
+    sigma2 : ndarray, shape (n_feature,)
         The variance of each feature.
     """
     mu = np.mean(X, axis=0)
