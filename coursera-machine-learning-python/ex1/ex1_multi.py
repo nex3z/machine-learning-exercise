@@ -26,8 +26,6 @@ X, mu, sigma = feature_normalize(X)
 # Add intercept term to X
 X = np.hstack((np.ones((m, 1)), X))
 
-raw_input("Program paused. Press enter to continue.")
-
 
 # ================ Part 2: Gradient Descent ================
 print 'Running gradient descent...'
@@ -38,11 +36,11 @@ num_iters = 400
 
 # Init theta and run gradient descent
 theta = np.zeros(3)
-theta, j_history = gradient_descent_multi(X, y, theta, alpha, num_iters)
+theta, J_history = gradient_descent_multi(X, y, theta, alpha, num_iters)
 
 # Plot the convergence graph
 plt.figure()
-plt.plot(range(1, num_iters + 1), j_history, color='b')
+plt.plot(range(1, num_iters + 1), J_history, color='b')
 plt.xlabel('Number of iterations')
 plt.ylabel('Cost J')
 plt.show()
@@ -56,8 +54,6 @@ normalize_test_data = ((np.array([1650, 3]) - mu) / sigma)
 normalize_test_data = np.hstack((np.ones(1), normalize_test_data))
 price = normalize_test_data.dot(theta)
 print 'Predicted price of a 1650 sq-ft, 3 br house:', price
-
-raw_input("Program paused. Press enter to continue.")
 
 
 # ================ Part 3: Normal Equations ================

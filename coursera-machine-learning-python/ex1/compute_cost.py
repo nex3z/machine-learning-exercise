@@ -16,10 +16,10 @@ def compute_cost(x, y, theta):
 
     Returns
     -------
-    j : numpy.float64
+    J : numpy.float64
         The cost of using theta as the parameter for linear regression to fit the data points in X and y.
     """
     m = len(y)
-    j = np.sum(np.square(x.dot(theta) - y)) / (2.0 * m)
+    J = np.sum(np.square(x.dot(theta) - y)) / (2.0 * m)
 
-    return j
+    return J

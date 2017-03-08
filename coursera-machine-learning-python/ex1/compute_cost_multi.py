@@ -16,10 +16,11 @@ def compute_cost_multi(X, y, theta):
 
     Returns
     -------
-    j : numpy.float64
+    J : numpy.float64
         The cost of using theta as the parameter for linear regression to fit the data points in X and y.
     """
     m = len(y)
-    tmp = X.dot(theta) - y
-    j = 1.0 / (2 * m) * tmp.T.dot(tmp)
-    return j
+    diff = X.dot(theta) - y
+    J = 1.0 / (2 * m) * diff.T.dot(diff)
+
+    return J

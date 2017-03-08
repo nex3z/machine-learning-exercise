@@ -24,14 +24,14 @@ def gradient_descent(X, y, theta, alpha, num_iters):
     -------
     theta : ndarray, shape (n_features,)
         Linear regression parameter.
-    j_history: ndarray, shape (num_iters,)
+    J_history: ndarray, shape (num_iters,)
         Cost history.
     """
     m = len(y)
-    j_history = np.zeros(num_iters)
+    J_history = np.zeros(num_iters)
 
     for i in range(num_iters):
         theta -= alpha / m * ((X.dot(theta) - y).T.dot(X))
-        j_history[i] = compute_cost(X, y, theta)
+        J_history[i] = compute_cost(X, y, theta)
 
-    return theta, j_history
+    return theta, J_history

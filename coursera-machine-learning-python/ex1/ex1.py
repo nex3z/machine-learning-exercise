@@ -12,12 +12,10 @@ from gradient_descent import gradient_descent
 
 
 # ==================== Part 1: Basic Function ====================
-print 'Running warmUpExercise...'
+print 'Running warm_up_exercise()...'
 print '5x5 Identity Matrix: '
 
 print warm_up_exercise()
-
-raw_input("Program paused. Press enter to continue.")
 
 
 # ======================= Part 2: Plotting =======================
@@ -32,8 +30,6 @@ m = len(y)  # Number of training examples
 plt.figure()
 plot_data(X, y)
 plt.show()
-
-raw_input("Program paused. Press enter to continue.")
 
 
 # =================== Part 3: Gradient descent ===================
@@ -53,7 +49,7 @@ cost = compute_cost(X, y, theta)
 print cost
 
 # Run gradient descent
-theta, j_history = gradient_descent(X, y, theta, alpha, iterations)
+theta, _ = gradient_descent(X, y, theta, alpha, iterations)
 
 # Print theta to screen
 print "Theta found by gradient descent:", theta
@@ -70,8 +66,6 @@ print "For population = 35,000, we predict a profit of", predict1 * 10000
 predict2 = np.array([1, 7]).dot(theta)
 print "For population = 70,000, we predict a profit of", predict2 * 10000
 
-raw_input("Program paused. Press enter to continue.")
-
 
 # ============= Part 4: Visualizing J(theta_0, theta_1) =============
 print "Visualizing J(theta_0, theta_1) ..."
@@ -80,29 +74,29 @@ print "Visualizing J(theta_0, theta_1) ..."
 theta0_vals = np.linspace(-10, 10, 100)
 theta1_vals = np.linspace(-1, 4, 100)
 
-j_vals = np.zeros((len(theta0_vals), len(theta1_vals)))
+J_vals = np.zeros((len(theta0_vals), len(theta1_vals)))
 
 # Fill out j_vals
 for i in range(len(theta0_vals)):
     for j in range(len(theta1_vals)):
         t = np.array([theta0_vals[i], theta1_vals[j]])
-        j_vals[i, j] = compute_cost(X, y, t)
+        J_vals[i, j] = compute_cost(X, y, t)
 
 # We need to transpose J_vals before calling plot_surface, or else the axes will be flipped.
-j_vals = j_vals.T
+J_vals = J_vals.T
 theta0_vals, theta1_vals = np.meshgrid(theta0_vals, theta1_vals)
 
 # Surface plot
 fig = plt.figure()
 ax = fig.gca(projection='3d')
-ax.plot_surface(theta0_vals, theta1_vals, j_vals, rstride=2, cstride=2, cmap=cm.jet, linewidth=0, antialiased=False)
+ax.plot_surface(theta0_vals, theta1_vals, J_vals, rstride=2, cstride=2, cmap=cm.jet, linewidth=0, antialiased=False)
 ax.set_xlabel(r'$\theta_0$')
 ax.set_ylabel(r'$\theta_1$')
 
 # Contour plot
 plt.figure()
 # Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100
-plt.contour(theta0_vals, theta1_vals, j_vals, levels=np.logspace(-2, 3, 20))
+plt.contour(theta0_vals, theta1_vals, J_vals, levels=np.logspace(-2, 3, 20))
 plt.plot(theta[0], theta[1], linestyle='', marker='x', color='r')
 plt.xlabel(r'$\theta_0$')
 plt.ylabel(r'$\theta_1$')
