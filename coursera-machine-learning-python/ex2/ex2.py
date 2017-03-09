@@ -77,5 +77,4 @@ print 'For a student with scores 45 and 85, we predict an admission probability 
 
 # Compute accuracy on our training set
 p = predict(theta, X)
-
 print 'Train Accuracy:', np.mean(p == y) * 100

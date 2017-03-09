@@ -29,20 +29,21 @@ plt.show()
 # Note that map_feature also adds a column of ones for us, so the intercept term is handled
 X = map_feature(X[:, 0], X[:, 1])
 m, n = X.shape
+
 # Initialize fitting parameters
-initial_theta = np.zeros((n, 1))
+initial_theta = np.zeros(n)
 
 # Set regularization parameter lambda to 1
 l = 1.0
 
-j, g = cost_function_reg(initial_theta, X, y, l)
+cost, _ = cost_function_reg(initial_theta, X, y, l)
 
-print 'Cost at initial theta (zeros):', j
+print 'Cost at initial theta (zeros):', cost
 
 
 # ============= Part 2: Regularization and Accuracies =============
 # Initialize fitting parameters
-initial_theta = np.zeros((n, 1))
+initial_theta = np.zeros(n)
 
 # Set regularization parameter lambda to t1 (you should vary this)
 l = 1.0

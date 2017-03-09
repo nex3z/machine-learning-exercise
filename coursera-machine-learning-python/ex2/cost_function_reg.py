@@ -32,9 +32,9 @@ def cost_function_reg(theta, X, y, l):
     # Skip the theta[0, 0] parameter when performing regularization
     mask[0, 0] = 0
 
-    j = 1.0 / m * (np.dot(-y.T, np.log(sigmoid(x_dot_theta))) - np.dot((1 - y).T, np.log(1 - sigmoid(x_dot_theta)))) \
+    J = 1.0 / m * (np.dot(-y.T, np.log(sigmoid(x_dot_theta))) - np.dot((1 - y).T, np.log(1 - sigmoid(x_dot_theta)))) \
         + 1.0 * l / (2 * m) * np.sum(np.power((mask.dot(theta)), 2))
 
     grad = 1.0 / m * np.dot((sigmoid(x_dot_theta) - y).T, X).T + 1.0 * l / m * (mask.dot(theta))
 
-    return j, grad
+    return J, grad

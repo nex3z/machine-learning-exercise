@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def plot_data(X, y):
     """
-    Plots the data points x and y into a new figure.
+    Plots the data points X and y.
 
     Parameters
     ----------

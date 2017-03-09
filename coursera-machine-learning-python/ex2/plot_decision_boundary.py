@@ -18,10 +18,9 @@ def plot_decision_boundary(theta, X, y):
         Labels.
     """
     if X.shape[1] <= 3:
-        plot_x = np.array([np.amin(X[:, 1]) - 2, np.amax(X[:, 1]) + 2])
-        plot_y = -1.0 / theta[2] * (theta[1] * plot_x + theta[0])
-        print plot_x, plot_y
-        plt.plot(plot_x, plot_y)
+        plot_X = np.array([np.amin(X[:, 1]) - 2, np.amax(X[:, 1]) + 2])
+        plot_y = -1.0 / theta[2] * (theta[1] * plot_X + theta[0])
+        plt.plot(plot_X, plot_y)
     else:
         u = np.linspace(-1, 1.5, 50)
         # u.resize((len(u), 1))

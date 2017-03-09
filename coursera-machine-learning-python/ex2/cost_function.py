@@ -18,7 +18,7 @@ def cost_function(theta, X, y):
 
     Returns
     -------
-    j : numpy.float64
+    J : numpy.float64
         The cost of using theta as the parameter for linear regression to fit the data points in x and y.
     grad: ndarray, shape (n_features,)
         The gradient of the cost w.r.t. the parameters.
@@ -26,8 +26,8 @@ def cost_function(theta, X, y):
     m, n = X.shape
     x_dot_theta = X.dot(theta)
 
-    j = 1.0 / m * (-y.T.dot(np.log(sigmoid(x_dot_theta))) - (1 - y).T.dot(np.log(1 - sigmoid(x_dot_theta))))
+    J = 1.0 / m * (-y.T.dot(np.log(sigmoid(x_dot_theta))) - (1 - y).T.dot(np.log(1 - sigmoid(x_dot_theta))))
 
     grad = 1.0 / m * (sigmoid(x_dot_theta) - y).T.dot(X)
 
-    return j, grad
+    return J, grad
