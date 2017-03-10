@@ -22,4 +22,5 @@ def predict_one_vs_all(all_theta, X):
     X = np.hstack((np.ones((m, 1)), X))
     p = np.argmax(X.dot(all_theta.T), axis=1)
     p[p == 0] = 10
+
     return p

@@ -37,9 +37,9 @@ X_t = np.hstack((np.ones((5, 1)), np.arange(1, 16).reshape(5, 3, order='F') / 10
 y_t = np.array([1, 0, 1, 0, 1])
 lambda_t = 3
 
-j, grad = lr_cost_function(theta_t, X_t, y_t, lambda_t)
+cost, grad = lr_cost_function(theta_t, X_t, y_t, lambda_t)
 
-print 'Cost:', j
+print 'Cost:', cost
 print 'Expected cost: 2.534819'
 print 'Gradients: \n', grad
 print 'Expected gradients: 0.146561 -0.548558 0.724722 1.398003'
