@@ -1,4 +1,4 @@
-# Exercise 6 | Support Vector Machines
+# Exercise 6-1: Support Vector Machines
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt

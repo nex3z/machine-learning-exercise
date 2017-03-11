@@ -1,4 +1,4 @@
-# Exercise 5 | Regularized Linear Regression and Bias-Variance
+# Exercise 5: Regularized Linear Regression and Bias-Variance
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt

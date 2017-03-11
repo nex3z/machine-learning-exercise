@@ -1,4 +1,4 @@
-# Exercise 2: Logistic Regression
+# Exercise 2-1: Logistic Regression
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as opt

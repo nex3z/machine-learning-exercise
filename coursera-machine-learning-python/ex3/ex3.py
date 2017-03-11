@@ -1,4 +1,4 @@
-# Exercise 3 | Part 1: One-vs-all
+# Exercise 3-1: One-vs-all
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt

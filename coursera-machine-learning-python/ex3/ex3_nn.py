@@ -1,4 +1,4 @@
-# Machine Learning Online Class - Exercise 3 | Part 2: Neural Networks
+# Exercise 3-2: Neural Networks
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt

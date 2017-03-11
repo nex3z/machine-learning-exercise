@@ -1,4 +1,4 @@
-# Exercise 6 | Spam Classification with SVMs
+# Exercise 6-2: Spam Classification with SVMs
 import numpy as np
 import scipy.io as sio
 from sklearn import svm

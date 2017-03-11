@@ -1,4 +1,4 @@
-# Exercise 1: Linear regression with multiple variables
+# Exercise 1-2: Linear regression with multiple variables
 import numpy as np
 import matplotlib.pyplot as plt
 

@@ -1,4 +1,4 @@
-# Exercise 8 | Anomaly Detection and Collaborative Filtering
+# Exercise 8-1: Anomaly Detection and Collaborative Filtering
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt

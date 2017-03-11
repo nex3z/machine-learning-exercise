@@ -1,4 +1,4 @@
-# Exercise 7 | Principle Component Analysis and K-Means Clustering
+# Exercise 7-2: Principle Component Analysis and K-Means Clustering
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt

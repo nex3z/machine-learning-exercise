@@ -1,4 +1,4 @@
-# Machine Learning Online Class - Exercise 2: Logistic Regression
+# Exercise 2-2: Logistic Regression with Regularization
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as opt
