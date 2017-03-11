@@ -14,9 +14,9 @@ Python implementation of the programming assignment from [Machine Learning](http
 
 - [Exercise 3-2: Neural Networks](https://github.com/nex3z/machine-learning-exercise/blob/master/coursera-machine-learning-python/ex3/ex3_nn.ipynb)
 
-- [Exercise 4 Neural Network Learning](https://github.com/nex3z/machine-learning-exercise/blob/master/coursera-machine-learning-python/ex4/ex4.ipynb)
+- [Exercise 4: Neural Network Learning](https://github.com/nex3z/machine-learning-exercise/blob/master/coursera-machine-learning-python/ex4/ex4.ipynb)
 
-- [Exercise 5 Regularized Linear Regression and Bias-Variance](https://github.com/nex3z/machine-learning-exercise/blob/master/coursera-machine-learning-python/ex5/ex5.ipynb)
+- [Exercise 5: Regularized Linear Regression and Bias-Variance](https://github.com/nex3z/machine-learning-exercise/blob/master/coursera-machine-learning-python/ex5/ex5.ipynb)
 
 - [Exercise 6-1: Support Vector Machines](https://github.com/nex3z/machine-learning-exercise/blob/master/coursera-machine-learning-python/ex6/ex6.ipynb)
 
