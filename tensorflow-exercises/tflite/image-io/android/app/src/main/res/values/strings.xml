@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TfLiteImage</string>
+    <string name="run">Run</string>
 </resources>

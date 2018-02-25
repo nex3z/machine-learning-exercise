@@ -16,32 +16,32 @@ import java.nio.channels.FileChannel;
 public class TfLiteModel {
     private static final String LOG_TAG = TfLiteModel.class.getSimpleName();
 
-    private static final String MODEL_PATH = "random_conv.tflite";
+    private static final String MODEL_PATH = "conv.tflite";
 
     private static final int DIM_BATCH_SIZE = 1;
-    private static final int DIM_IMG_SIZE_X = 224;
-    private static final int DIM_IMG_SIZE_Y = 224;
+    private static final int DIM_IMG_SIZE_HEIGHT = 150;
+    private static final int DIM_IMG_SIZE_WIDTH = 200;
     private static final int DIM_PIXEL_SIZE = 3;
 
     private Interpreter mTfLite;
     private ByteBuffer mImgData = null;
-    private int[] mImagePixels = new int[DIM_IMG_SIZE_X * DIM_IMG_SIZE_Y];
-    private float[][][][] mProcessed = new float[1][DIM_IMG_SIZE_X][DIM_IMG_SIZE_Y][DIM_PIXEL_SIZE];
+    private int[] mImagePixels = new int[DIM_IMG_SIZE_HEIGHT * DIM_IMG_SIZE_WIDTH];
+    private float[][][][] mProcessed = new float[1][DIM_IMG_SIZE_HEIGHT][DIM_IMG_SIZE_WIDTH][DIM_PIXEL_SIZE];
 
 
     TfLiteModel(Activity activity) throws IOException {
         mTfLite = new Interpreter(loadModelFile(activity));
 
         mImgData = ByteBuffer.allocateDirect(
-                        4 * DIM_BATCH_SIZE * DIM_IMG_SIZE_X * DIM_IMG_SIZE_Y * DIM_PIXEL_SIZE);
+                        4 * DIM_BATCH_SIZE * DIM_IMG_SIZE_HEIGHT * DIM_IMG_SIZE_WIDTH * DIM_PIXEL_SIZE);
         mImgData.order(ByteOrder.nativeOrder());
     }
 
     public Bitmap apply(Bitmap bitmap) {
         convertBitmapToByteBuffer(bitmap);
         mTfLite.run(mImgData, mProcessed);
-        // ImageUtil.printImageArray(mProcessed[0], DIM_IMG_SIZE_X, DIM_IMG_SIZE_Y);
-        return ImageUtil.createBitmap(mProcessed[0], DIM_IMG_SIZE_X, DIM_IMG_SIZE_Y);
+        // ImageUtil.printImageArray(mProcessed[0], DIM_IMG_SIZE_HEIGHT, DIM_IMG_SIZE_WIDTH);
+        return ImageUtil.createBitmap(mProcessed[0], DIM_IMG_SIZE_HEIGHT, DIM_IMG_SIZE_WIDTH);
     }
 
     private MappedByteBuffer loadModelFile(Activity activity) throws IOException {
@@ -63,8 +63,8 @@ public class TfLiteModel {
                 bitmap.getWidth(), bitmap.getHeight());
 
         int pixel = 0;
-        for (int i = 0; i < DIM_IMG_SIZE_X; ++i) {
-            for (int j = 0; j < DIM_IMG_SIZE_Y; ++j) {
+        for (int i = 0; i < DIM_IMG_SIZE_WIDTH; ++i) {
+            for (int j = 0; j < DIM_IMG_SIZE_HEIGHT; ++j) {
                 final int val = mImagePixels[pixel++];
                 mImgData.putFloat((val >> 16) & 0xFF);
                 mImgData.putFloat((val >> 8) & 0xFF);

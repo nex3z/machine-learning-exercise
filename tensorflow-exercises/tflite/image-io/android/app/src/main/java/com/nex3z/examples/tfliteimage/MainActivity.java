@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -11,7 +13,6 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    private ImageView mIvInput;
     private ImageView mIvOutput;
     private TfLiteModel mTfLiteModel;
 
@@ -25,12 +26,22 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         initView();
         initModel();
-        run();
     }
 
     private void initView() {
-        mIvInput = findViewById(R.id.iv_input);
         mIvOutput = findViewById(R.id.iv_output);
+        ImageView ivInput = findViewById(R.id.iv_input);
+        Button btnRun = findViewById(R.id.btn_run);
+
+        final Bitmap input = ImageUtil.getImageAsset(this, "iris.jpg");
+        ivInput.setImageBitmap(input);
+
+        btnRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                run(input);
+            }
+        });
     }
 
     private void initModel() {
@@ -41,14 +52,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void run() {
+    private void run(Bitmap input) {
         if (mTfLiteModel == null) {
             Log.e(LOG_TAG, "run(): Model is not initialized, abort");
             return;
         }
-        Bitmap input = ImageUtil.getImageAsset(this, "daisies.jpg");
-        mIvInput.setImageBitmap(input);
-
         Bitmap result = mTfLiteModel.apply(input);
         mIvOutput.setImageBitmap(result);
     }

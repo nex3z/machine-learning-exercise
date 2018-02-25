@@ -36,12 +36,12 @@ public class ImageUtil {
         return bitmap;
     }
 
-    public static Bitmap createBitmap(float[][][] data, int width, int height) {
-        int[] image = new int[width * height * 3];
+    public static Bitmap createBitmap(float[][][] data, int height, int width) {
+        int[] image = new int[height * width * 3];
         int pixel = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                int color = getColor(data[i][j]);
+        for (int h = 0; h < height; h++) {
+            for (int w = 0; w < width; w++) {
+                int color = getColor(data[h][w]);
                 image[pixel++] = color;
             }
         }
@@ -56,16 +56,16 @@ public class ImageUtil {
     }
 
     @SuppressLint("DefaultLocale")
-    public static void printImageArray(float[][][] data, int width, int height) {
-        for (int i = 0; i < width; i++) {
+    public static void printImageArray(float[][][] data, int height, int width) {
+        for (int h = 0; h < height; h++) {
             StringBuilder sb = new StringBuilder();
             sb.append("[");
-            for (int j = 0; j < height; j++) {
-                sb.append(String.format("(%3d,%3d,%3d), ", (int) data[i][j][0], (int) data[i][j][1],
-                        (int) data[i][j][2]));
+            for (int w = 0; w < width; w++) {
+                sb.append(String.format("(%3d,%3d,%3d), ",
+                        (int) data[h][w][0], (int) data[h][w][1], (int) data[h][w][2]));
             }
             sb.append("]");
-            Log.i(LOG_TAG, "printImageArray(): i = " + i + ", " + sb.toString());
+            Log.i(LOG_TAG, "printImageArray(): h = " + h + ", " + sb.toString());
         }
     }
 
