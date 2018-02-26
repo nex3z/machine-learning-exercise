@@ -16,7 +16,8 @@ import java.nio.channels.FileChannel;
 public class TfLiteModel {
     private static final String LOG_TAG = TfLiteModel.class.getSimpleName();
 
-    private static final String MODEL_PATH = "conv.tflite";
+    // private static final String MODEL_PATH = "conv.tflite";
+    private static final String MODEL_PATH = "conv_var_input.tflite";
 
     private static final int DIM_BATCH_SIZE = 1;
     private static final int DIM_IMG_SIZE_HEIGHT = 150;
