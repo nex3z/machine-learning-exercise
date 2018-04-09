@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">AndroidTfLiteMnist</string>
-    <string name="run">Run</string>
-    <string name="probabilities">Probabilities:</string>
-    <string name="prediction">Prediction:</string>
-</resources>
