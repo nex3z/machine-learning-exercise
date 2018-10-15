@@ -40,7 +40,7 @@ def process_email(email_contents):
         word = re.sub('[^a-zA-Z0-9]', '', word)
         if word == '':
             continue
-        word = stemmer.stem_word(word)
+        word = stemmer.stem(word)
         print word,
         if word in vocab_list:
             idx = vocab_list.index(word)
